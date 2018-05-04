@@ -144,7 +144,7 @@ a:hover {
   font-size: 1.5rem;
 }
 .node {
-  font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 300 8px "Helvetica Neue", Helvetica, Arial, sans-serif;
   fill: #bbb;
 }
 
@@ -443,7 +443,7 @@ init();
 
 var div = d3.select("body").append("div").attr("class", "tooltip").style("opacity", 0);
 
-var diameter = window.innerWidth * .80,
+var diameter = window.innerWidth,
     radius = diameter / 2,
     innerRadius = radius - 300;
 
