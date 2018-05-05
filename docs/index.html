@@ -529,14 +529,6 @@ function handleResize() {
 
   chart.style("width", chartWidth + "px").style("height", Math.floor(window.innerHeight / 2) + "px");
 
-  diameter = window.innerWidth * .60;
-  radius = diameter / 2;
-  innerRadius = radius - 300;
-
-  cluster.size([360, innerRadius]);
-	
-  svg.attr("width", diameter).attr("height", diameter).append("g").attr("transform", "translate(" + radius + "," + radius + ")");
-	
   // 3. tell scrollama to update new element dimensions
   scroller.resize();
 }
