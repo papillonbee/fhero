@@ -535,6 +535,8 @@ function handleResize() {
 
   cluster.size([360, innerRadius]);
 	
+  svg.attr("width", diameter).attr("height", diameter).append("g").attr("transform", "translate(" + radius + "," + radius + ")");
+	
   // 3. tell scrollama to update new element dimensions
   scroller.resize();
 }
