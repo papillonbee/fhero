@@ -146,11 +146,12 @@ a:hover {
 .node {
   font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
   fill: #bbb;
-  display: block;
+  pointer-events: none;
 }
 
 .node:hover {
   fill: #000;
+  pointer-events: none;
 }
 
 .link {
@@ -164,14 +165,17 @@ a:hover {
 .node--source,
 .node--target {
   font-weight: 700;
+  pointer-events: none;
 }
 
 .node--source {
   fill: #2ca02c;
+  pointer-events: none;
 }
 
 .node--target {
   fill: #d62728;
+  pointer-events: none;
 }
 
 .link--source,
