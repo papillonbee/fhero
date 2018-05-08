@@ -146,7 +146,6 @@ a:hover {
 .node {
   font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
   fill: #bbb;
-  pointer-events: none;
 }
 
 .node:hover {
@@ -632,7 +631,7 @@ function update(year) {
       return d;
     }
     //console.log(d[d.length - 1].data.key);
-  }).style("stroke-opacity", 0);
+  }).transition().duration(500).style("stroke-opacity", 0);
 
 }
 //# sourceURL=pen.js
