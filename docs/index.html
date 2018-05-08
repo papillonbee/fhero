@@ -621,7 +621,7 @@ function update(year) {
     arr2.push(x[i][x[i].length - 1].data.key);
   }
 
-  link.style("stroke-opacity", 0.4);
+  link.transition().duration(500).style("stroke-opacity", 0.4);
 
   link.filter(function (d) {
     if (arr.includes(d[0].data.key) & arr2.includes(d[d.length - 1].data.key)) {
@@ -631,7 +631,7 @@ function update(year) {
       return d;
     }
     //console.log(d[d.length - 1].data.key);
-  }).transition().duration(500).style("stroke-opacity", 0);
+  }).style("stroke-opacity", 0);
 
 }
 //# sourceURL=pen.js
