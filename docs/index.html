@@ -366,7 +366,7 @@ var div = d3.select("body").append("div").attr("class", "tooltip").style("opacit
 
 var diameter = 1152;
     radius = diameter / 2,
-    innerRadius = radius - 300;
+    innerRadius = radius - 350;
 
 var cluster = d3.cluster().size([360, innerRadius]);
 
@@ -379,7 +379,7 @@ var line = d3.radialLine().curve(d3.curveBundle.beta(0.85)).radius(function (d) 
 var svg = d3.select("div#container")
   .append("svg")
   .attr("preserveAspectRatio", "xMinYMin meet")
-  .attr("viewBox", "-633.6 -633.6 1267.2 1267.2");
+  .attr("viewBox", "-576 -576 1152 1152");
 
 svg.append("g").attr("transform", "translate(" + radius + "," + radius + ")");
 	
