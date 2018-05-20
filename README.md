@@ -1,5 +1,5 @@
 # THAILAND'S SOCIAL & POLITICAL EVENTS FROM FHERO
-156 Songs from FHERO are categorized into 3 groups as follows
+156 songs from FHERO are categorized into 3 groups as follows
 1. Entertainment
 2. Commercial
 3. Social & Political
