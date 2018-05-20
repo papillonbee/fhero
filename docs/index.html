@@ -249,9 +249,7 @@ setInterval("showDate()", 1000);
 </section>
 <section id="scroll">
   <div class="scroll__graphic">
-    <div class="chart">
-      <svg></svg>
-    </div>
+    <div id="container" class="chart"></div>
   </div>
   <div class="scroll__text">
     <div class='step' data-step='1'>
@@ -378,8 +376,13 @@ var line = d3.radialLine().curve(d3.curveBundle.beta(0.85)).radius(function (d) 
   return d.x / 180 * Math.PI;
 });
 
-var svg = chart.select("svg").attr("width", diameter).attr("height", diameter).append("g").attr("transform", "translate(" + radius + "," + radius + ")");
+var svg = d3.select("div#container")
+  .append("svg")
+  .attr("preserveAspectRatio", "xMinYMin meet")
+  .attr("viewBox", "-576 -576 1152 1152");
 
+svg.append("g").attr("transform", "translate(" + radius + "," + radius + ")");
+	
 var link = svg.append("g").selectAll(".link"),
     node = svg.append("g").selectAll(".node");
 
