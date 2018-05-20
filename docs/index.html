@@ -197,14 +197,44 @@ div.tooltip {
     border: 0px;		
     border-radius: 8px;			
     pointer-events: none;			
-}</style></head><body>
-<script>
-function blinker() {
-	$('.blinking').fadeOut(500);
-	$('.blinking').fadeIn(500);
 }
-setInterval(blinker, 1000);
-</script>
+.blink {
+	-webkit-animation: blink .75s linear infinite;
+	-moz-animation: blink .75s linear infinite;
+	-ms-animation: blink .75s linear infinite;
+	-o-animation: blink .75s linear infinite;
+	 animation: blink .75s linear infinite;
+}
+@-webkit-keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	50.01% { opacity: 0; }
+	100% { opacity: 0; }
+}
+@-moz-keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	50.01% { opacity: 0; }
+	100% { opacity: 0; }
+}
+@-ms-keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	50.01% { opacity: 0; }
+	100% { opacity: 0; }
+}
+@-o-keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	50.01% { opacity: 0; }
+	100% { opacity: 0; }
+}
+@keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	50.01% { opacity: 0; }
+	100% { opacity: 0; }
+}</style></head><body>
 <script language="JavaScript">
 function showDate()
 {
@@ -232,7 +262,7 @@ document.getElementById("dateDiv").innerHTML = today;
 setInterval("showDate()", 1000);
 </script>
 <section id="intro">
-  <div id="dateDiv"><!--Hello on Thursday, 03 May, 2561 - 15:18:24--></div>
+  <div id="dateDiv">Loading<!--Hello on Thursday, 03 May, 2561 - 15:18:24--></div>
   <p>We proudly present you</p>
   <p class="intro__overline">
     <!--<a href='https://github.com/russellgoldenberg/scrollama'>scrollama.js</a>-->
@@ -245,7 +275,7 @@ setInterval("showDate()", 1000);
   <p class='intro__dek'>
     Scroll down to explore
   </p>-->
-  <p class="blinking">
+  <p class="blink">
     ▽
     <br>
     ▽
