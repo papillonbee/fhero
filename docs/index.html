@@ -198,6 +198,13 @@ div.tooltip {
     border-radius: 8px;			
     pointer-events: none;			
 }</style></head><body>
+<script>
+function blinker() {
+	$('#blinking').fadeOut(500);
+	$('#blinking').fadeIn(500);
+}
+setInterval(blinker, 1000);
+</script>
 <script language="JavaScript">
 function showDate()
 {
@@ -238,7 +245,7 @@ setInterval("showDate()", 1000);
   <p class='intro__dek'>
     Scroll down to explore
   </p>-->
-  <p class="intro__dek">
+  <p class="intro__dek" id="blinking">
     ▽
     <br>
     ▽
