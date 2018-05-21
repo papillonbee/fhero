@@ -132,6 +132,11 @@ a:hover {
 .step {
   margin: 2rem auto;
   border: 1px solid #333;
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  font-size: 1vw;
 }
 
 .step.is-active {
@@ -140,8 +145,6 @@ a:hover {
 
 .step p {
   text-align: center;
-  padding: 1rem;
-  font-size: 1.5rem;
 }
 .node {
   font: 300 9px "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -235,6 +238,20 @@ div.tooltip {
 	50% { opacity: 1; }
 	50.01% { opacity: 0; }
 	100% { opacity: 0; }
+}
+.steptext {
+  position: absolute;
+  top: 0%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+}
+.video {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 50%;
 }</style></head><body>
 <script language="JavaScript">
 function showDate()
@@ -305,12 +322,17 @@ setInterval("showDate()", 1000);
       <p>YEAR 2548</p>
     </div>
     <div class='step' data-step='5'>
-      <p>YEAR 2549</br>
-    <ul>
+      <p>YEAR 2549
+    <ul class="steptext">
+      </br>
+      </br>
+    </br>
       <li><a href="https://en.wikipedia.org/wiki/2006_Thai_coup_d%27%C3%A9tat">2006 Thai coup d'état</a>
       </br>
     <a href="https://th.wikipedia.org/wiki/%E0%B8%A3%E0%B8%B1%E0%B8%90%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2_%E0%B8%9E.%E0%B8%A8._2549">รัฐประหารในประเทศไทย พ.ศ. 2549</a></li>
-    </ul></p>
+    </ul>
+</p>
+<iframe src="https://www.youtube.com/embed/9yU2I2ADyqo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="video"></iframe>
     </div>
     <div class='step' data-step='6'>
       <p>YEAR 2550</p>
@@ -319,63 +341,91 @@ setInterval("showDate()", 1000);
       <p>YEAR 2551</p>
     </div>
     <div class='step' data-step='8'>
-      <p>YEAR 2552</br>
-    <ul>
-      <li><a href="https://en.wikipedia.org/wiki/South_Thailand_insurgency">South Thailand insurgency</a>
+      <p>YEAR 2552
+    <ul class="steptext">
       </br>
-    <a href="https://th.wikipedia.org/wiki/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%AA%E0%B8%87%E0%B8%9A%E0%B9%83%E0%B8%99%E0%B8%8A%E0%B8%B2%E0%B8%A2%E0%B9%81%E0%B8%94%E0%B8%99%E0%B8%A0%E0%B8%B2%E0%B8%84%E0%B9%83%E0%B8%95%E0%B9%89%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2">ความไม่สงบในชายแดนภาคใต้ของประเทศไทย</a></li>
+      </br>
+    </br>
+      <li><a href="https://en.wikipedia.org/wiki/2009_Thai_political_unrest">2009 Thai political unrest</a>
+      </br>
+    <a href="https://th.wikipedia.org/wiki/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%AA%E0%B8%87%E0%B8%9A%E0%B8%97%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B9%83%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2_%E0%B9%80%E0%B8%A1%E0%B8%A9%E0%B8%B2%E0%B8%A2%E0%B8%99_%E0%B8%9E.%E0%B8%A8._2552">ความไม่สงบทางการเมืองในประเทศไทย เมษายน พ.ศ. 2552</a></li>
     </ul></p>
+<iframe src="https://www.youtube.com/embed/sRdLegq7BcY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="video"></iframe>
     </div>
     <div class='step' data-step='9'>
-      <p>YEAR 2553</br>
-    <ul>
+      <p>YEAR 2553
+    <ul class="steptext">
+      </br>
+      </br>
+    </br>
       <li><a href="https://en.wikipedia.org/wiki/2010_Thai_political_protests">2010 Thai political protests</a>
       </br>
     <a href="https://th.wikipedia.org/wiki/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%A5%E0%B8%B2%E0%B8%A2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%8A%E0%B8%B8%E0%B8%A1%E0%B8%99%E0%B8%B8%E0%B8%A1%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%81%E0%B8%A2%E0%B8%81%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%AA%E0%B8%87%E0%B8%84%E0%B9%8C_%E0%B8%9E.%E0%B8%A8._2553">การสลายการชุมนุมที่แยกราชประสงค์ พ.ศ. 2553</a></li>
     </ul></p>
+<iframe src="https://www.youtube.com/embed/qSK7fwez9RI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="video"></iframe>
     </div>
     <div class='step' data-step='10'>
-      <p>YEAR 2554</br>
-    <ul>
+      <p>YEAR 2554
+    <ul class="steptext">
+      </br>
+      </br>
+    </br>
       <li><a href="https://www.theatlantic.com/photo/2011/10/worst-flooding-in-decades-swamps-thailand/100168/">Worst Flooding in Decades Swamps Thailand</a>
       </br>
     <a href="https://www.thairath.co.th/content/463577">น้ำท่วมใหญ่ปี 54 ฤทธิ์ 'น้องน้ำ' ทำคนไทยจำฝังใจ เพราะ 'เอาไม่อยู่'</a></li>
     </ul></p>
+<iframe src="https://www.youtube.com/embed/cfX9R4o0TGY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="video"></iframe>
     </div>
     <div class='step' data-step='11'>
       <p>YEAR 2555</p>
     </div>
     <div class='step' data-step='12'>
-      <p>YEAR 2556</br>
-    <ul>
+      <p>YEAR 2556
+    <ul class="steptext">
+      </br>
+      </br>
+    </br>
       <li><a href="https://en.wikipedia.org/wiki/2013%E2%80%932014_Thai_political_crisis">2013–2014 Thai political crisis</a>
       </br>
     <a href="https://th.wikipedia.org/wiki/%E0%B8%A7%E0%B8%B4%E0%B8%81%E0%B8%A4%E0%B8%95%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%93%E0%B9%8C%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B9%84%E0%B8%97%E0%B8%A2_%E0%B8%9E.%E0%B8%A8._2556%E2%80%932557">วิกฤตการณ์การเมืองไทย พ.ศ. 2556–2557</a></li>
     </ul></p>
+<iframe src="https://www.youtube.com/embed/-CWBHUjD-0M" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="video"></iframe>
     </div>
     <div class='step' data-step='13'>
-      <p>YEAR 2557</br>
-    <ul>
+      <p>YEAR 2557
+    <ul class="steptext">
+      </br>
+      </br>
+    </br>
       <li>Thailand had executed an Animal Protection Act for the first time in 2014
       </br>
     <a href="https://www.thairath.co.th/content/467700">พ.ร.บ.คุ้มครองสัตว์ คลอดแล้วเพื่อสัตว์</a> (<a href="http://web.krisdika.go.th/data/law/law2/%BB53/%BB53-20-2557-a0001.htm">พระราชบัญญัติป้องกันการทารุณกรรมและการจัดสวัสดิภาพสัตว์ พ.ศ. ๒๕๕๗</a>)</li>
     </ul></p>
+<iframe src="https://www.youtube.com/embed/7IqXBH3XWWE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="video"></iframe>
     </div>
     <div class='step' data-step='14'>
-      <p>YEAR 2558</br>
-    <ul>
+      <p>YEAR 2558
+    <ul class="steptext">
+      </br>
+      </br>
+    </br>
       <li>FHERO wrote a song for K-POP fans in Thailand
       </br>
     <a href="https://twitter.com/Fucking_Hero/status/650146844568190976">"ฉันก็เป็น ติ่งเกาหลีคนหนึ่ง"</a></li>
     </ul></p>
+<iframe src="https://www.youtube.com/embed/tPQjTFViWsY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="video"></iframe>
     </div>
     <div class='step' data-step='15'>
-      <p>YEAR 2559</br>
-    <ul>
+      <p>YEAR 2559
+    <ul class="steptext">
+      </br>
+      </br>
+    </br>
       <li><a href="http://www.bbc.com/news/world-asia-37643326">Thailand's King Bhumibol Adulyadej dead at 88</a>
       </br>
     <a href="http://www.bbc.co.uk/news/resources/idt-sh/king_bhumibol_thai">หนึ่งปีแห่งความอาดูร</a></li>
     </ul></p>
+<iframe src="https://www.youtube.com/embed/IX4iPndzEj4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="video"></iframe>
     </div>
     <div class='step' data-step='16'>
       <p>YEAR 2560</p>
