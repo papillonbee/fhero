@@ -444,8 +444,7 @@ var div = d3.select("body").append("div").attr("class", "tooltip").style("opacit
 
 var diameter = 1152;
     radius = diameter / 2,
-    //innerRadius = radius - 300;
-    innerRadius = 500;
+    innerRadius = radius - 300;
 var cluster = d3.cluster().size([360, innerRadius]);
 
 var line = d3.radialLine().curve(d3.curveBundle.beta(0.85)).radius(function (d) {
@@ -620,16 +619,16 @@ function handleResize() {
 
   var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
   if(w <= 750){
-    text.style("left", "33.33%");
+    text.style("left", "16.67%").style("width", "66.67%");
     svg.style("left", "25%");
     step.style("margin-bottom", "175%");
-    cluster.size([360, 500]);
+    //cluster.size([360, 500]);
   }
   else{
-    text.style("left", "0%");
+    text.style("left", "0%").style("width", "33.33%");
     svg.style("left", "50%");
     step.style("margin-bottom", "10%");
-    cluster.size([360, 276]);
+    //cluster.size([360, 276]);
   }
   // 3. tell scrollama to update new element dimensions
   scroller.resize();
