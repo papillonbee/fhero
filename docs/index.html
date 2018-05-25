@@ -142,7 +142,6 @@ a:hover {
   border: 1px solid #333;
   position: relative;
   width: 100%;
-  height: 0;
   padding-bottom: 5%;
   font-size: 1vw;
   overflow-y: auto;
@@ -603,7 +602,7 @@ var scroller = scrollama();
 // generic window resize listener event
 function handleResize() {
   // 1. update height of step elements
-  var stepHeight = Math.floor(window.innerHeight * 0.75);
+  //var stepHeight = Math.floor(window.innerHeight * 0.75);
   step.style("height", stepHeight + "px");
 
   // 2. update width/height of graphic element
