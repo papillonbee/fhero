@@ -142,9 +142,10 @@ a:hover {
   border: 1px solid #333;
   position: relative;
   width: 100%;
-  padding-top: 20%;
-  padding-bottom: 20%;
+  padding-top: 5%;
+  padding-bottom: 5%;
   font-size: 1vw;
+  margin-bottom: 10%;
 }
 
 .step.is-active {
@@ -616,6 +617,17 @@ function handleResize() {
 
   chart.style("width", chartWidth + "px").style("height", Math.floor(window.innerHeight / 2) + "px");
 
+  var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  if(w <= 750){
+    text.style("left", "33%");
+    svg.style("left", "25%");
+    step.style("margin-bottom", "175%");
+  }
+  else{
+    text.style("left", "0%");
+    svg.style("left", "50%");
+    step.style("margin-bottom", "10%");
+  }
   // 3. tell scrollama to update new element dimensions
   scroller.resize();
 }
