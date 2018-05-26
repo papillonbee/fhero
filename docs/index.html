@@ -521,6 +521,9 @@ d3.json("https://gist.githubusercontent.com/papillonbee/1ef1c7b696112ea1d08bb32d
     return d.data.key;
   }).on("mouseover", mouseovered).on("mouseout", mouseouted);
 });
+
+link.style("stroke-opacity", 0);
+	
 function mouseovered(d) {
   node.each(function (n) {
     n.target = n.source = false;
