@@ -167,7 +167,7 @@ a:hover {
 
 .link {
   stroke: steelblue;
-  stroke-opacity: 0.4;
+  stroke-opacity: 0;
   fill: none;
   pointer-events: none;
 }
@@ -521,8 +521,6 @@ d3.json("https://gist.githubusercontent.com/papillonbee/1ef1c7b696112ea1d08bb32d
     return d.data.key;
   }).on("mouseover", mouseovered).on("mouseout", mouseouted);
 });
-
-link.style("stroke-opacity", 0);
 	
 function mouseovered(d) {
   node.each(function (n) {
