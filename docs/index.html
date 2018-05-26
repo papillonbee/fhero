@@ -439,33 +439,50 @@ var chart = graphic.select(".chart");
 var text = container.select(".scroll__text");
 var step = text.selectAll(".step");
 
-var div = d3.select("body").append("div").attr("class", "tooltip").style("opacity", 0);
-
+var div = d3.select("body").append("div")
+    .attr("class", "tooltip")				
+    .style("opacity", 0);
+  
 var diameter = 1152,
     radius = diameter / 2,
     innerRadius = radius - 300;
-var cluster = d3.cluster().size([360, innerRadius]);
 
-var line = d3.radialLine().curve(d3.curveBundle.beta(0.85)).radius(function (d) {
-  return d.y;
-}).angle(function (d) {
-  return d.x / 180 * Math.PI;
-});
+var cluster = d3.cluster()
+    .size([360, innerRadius]);
+
+var line = d3.radialLine()
+    .curve(d3.curveBundle.beta(0.85))
+    .radius(function(d) { return d.y; })
+    .angle(function(d) { return d.x / 180 * Math.PI; });
 
 var svg = d3.select(".chart")
   .append("svg")
   .attr("preserveAspectRatio", "xMinYMin meet")
   .attr("viewBox", "-576 -576 1152 1152");
 
-svg.append("g").attr("transform", "translate(" + radius + "," + radius + ")");
-	
+/*var circle = svg.selectAll("circle")
+    .data([100, 200, 300]);
+
+circle.enter().append("circle")
+    .style("stroke", "red")
+  .merge(circle)
+    .style("fill", "steelblue")
+    .attr("r", function(d) { return Math.sqrt(d/Math.PI); })
+    .attr("cx", function(d, i) { return i*100+50; })
+    .attr("cy", 50);
+
+circle.exit().remove();*/
+
+  svg.append("g")
+    .attr("transform", "translate(" + radius + "," + radius + ")");
+
 var link = svg.append("g").selectAll(".link"),
     node = svg.append("g").selectAll(".node");
 
 var data;
-d3.json("https://gist.githubusercontent.com/papillonbee/1ef1c7b696112ea1d08bb32de9a6a2c7/raw/23a85e5aee94c45f171e13d9e766d73a2cc6b1be/Book2.json", function (error, classes) {
+d3.json("https://gist.githubusercontent.com/papillonbee/1ef1c7b696112ea1d08bb32de9a6a2c7/raw/23a85e5aee94c45f171e13d9e766d73a2cc6b1be/Book2.json", function(error, classes) {
   if (error) throw error;
-
+  
   /*classes = classes.filter(function(d, i){
     if(d.name.substr(0, d.name.lastIndexOf(".")) === '2545'){
       return d;
@@ -483,72 +500,64 @@ d3.json("https://gist.githubusercontent.com/papillonbee/1ef1c7b696112ea1d08bb32d
   console.log(classes);*/
   //console.log(classes[0].name.substr(0, (classes[0].name.lastIndexOf("."))));
   data = classes;
-  var root = packageHierarchy(classes).sum(function (d) {
-    return d.size;
-  });
-
+  var root = packageHierarchy(classes)
+      .sum(function(d) { return d.size; });
+  
   cluster(root);
+  
+  link = link
+    .data(packageImports(root.leaves()))
+    .enter().append("path")
+      .each(function(d) { d.source = d[0], d.target = d[d.length - 1]; })
+      .attr("class", "link")
+      .attr("d", line);
 
-  link = link.data(packageImports(root.leaves())).enter().append("path").each(function (d) {
-    d.source = d[0], d.target = d[d.length - 1];
-  }).attr("class", "link").attr("d", line);
-
-  node = node.data(root.leaves()).enter()
-	.append("a")
-      	.attr("class", "node")
-      	.attr("dy", "0.31em")
-	.attr("target", function(d){
-      if(d.data.url === ""){
-	
-      }
-      else{
-	return "_blank";
-      }
-  })
-      	.attr("xlink:href", function(d){
-      if(d.data.url === ""){
-	
-      }
-      else{
-	return d.data.url;
-      }
-  })
-	.append("text").attr("class", "node").attr("dy", "0.31em").attr("transform", function (d) {
-    return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)");
-  }).attr("text-anchor", function (d) {
-    return d.x < 180 ? "start" : "end";
-  }).text(function (d) {
-    return d.data.key;
-  }).on("mouseover", mouseovered).on("mouseout", mouseouted);
+  node = node.data(root.leaves())
+    .enter().append("text")
+      .attr("class", "node")
+      .attr("dy", "0.31em")
+      .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
+      .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+      .text(function(d) { return d.data.key; })
+      .on("mouseover", mouseovered)
+      .on("mouseout", mouseouted);
 });
-	
+
 function mouseovered(d) {
-  node.each(function (n) {
-    n.target = n.source = false;
-  });
+  node
+      .each(function(n) { n.target = n.source = false; });
 
-  link.classed("link--target", function (l) {
-    if (l.target === d) return l.source.source = true;
-  }).classed("link--source", function (l) {
-    if (l.source === d) return l.target.target = true;
-  }).filter(function (l) {
-    return l.target === d || l.source === d;
-  }).raise();
+  link
+      .classed("link--target", function(l) { if (l.target === d) return l.source.source = true; })
+      .classed("link--source", function(l) { if (l.source === d) return l.target.target = true; })
+    .filter(function(l) { return l.target === d || l.source === d; })
+      .raise();
 
-  node.classed("node--target", function (n) {
-    return n.target;
-  }).classed("node--source", function (n) {
-    return n.source;
-  });
-  div.transition().duration(200).style("opacity", .9);
-  div.html(d.data.key + "<br/>").style("left", d3.event.pageX + "px").style("top", d3.event.pageY - 28 + "px");
+  node
+      .classed("node--target", function(n) { return n.target; })
+      .classed("node--source", function(n) { return n.source; });
+  div
+      .transition()		
+      .duration(200)		
+      .style("opacity", .9);		
+  div
+      .html(d.data.key + "<br/>")	
+      .style("left", (d3.event.pageX) + "px")		
+      .style("top", (d3.event.pageY - 28) + "px");
 }
 
 function mouseouted(d) {
-  link.classed("link--target", false).classed("link--source", false);
+  link
+      .classed("link--target", false)
+      .classed("link--source", false);
 
-  node.classed("node--target", false).classed("node--source", false);
-  div.transition().duration(500).style("opacity", 0);
+  node
+      .classed("node--target", false)
+      .classed("node--source", false);
+  div
+      .transition()		
+      .duration(500)		
+      .style("opacity", 0);	
 }
 
 // Lazily construct the package hierarchy from class names.
@@ -556,10 +565,9 @@ function packageHierarchy(classes) {
   var map = {};
 
   function find(name, data) {
-    var node = map[name],
-        i;
+    var node = map[name], i;
     if (!node) {
-      node = map[name] = data || { name: name, children: [] };
+      node = map[name] = data || {name: name, children: []};
       if (name.length) {
         node.parent = find(name.substring(0, i = name.lastIndexOf(".")));
         node.parent.children.push(node);
@@ -569,7 +577,7 @@ function packageHierarchy(classes) {
     return node;
   }
 
-  classes.forEach(function (d) {
+  classes.forEach(function(d) {
     find(d.name, d);
   });
 
@@ -582,20 +590,19 @@ function packageImports(nodes) {
       imports = [];
 
   // Compute a map from name to node.
-  nodes.forEach(function (d) {
+  nodes.forEach(function(d) {
     map[d.data.name] = d;
   });
 
   // For each import, construct a link from the source to target node.
-  nodes.forEach(function (d) {
-    if (d.data.imports) d.data.imports.forEach(function (i) {
+  nodes.forEach(function(d) {
+    if (d.data.imports) d.data.imports.forEach(function(i) {
       imports.push(map[d.data.name].path(map[i]));
     });
   });
 
   return imports;
 }
-	
 // initialize the scrollama
 var scroller = scrollama();
 
@@ -608,26 +615,32 @@ function handleResize() {
   // 2. update width/height of graphic element
   var bodyWidth = d3.select("body").node().offsetWidth;
 
-  graphic.style("width", bodyWidth + "px").style("height", window.innerHeight + "px");
+  graphic
+    .style("width", bodyWidth + "px")
+    .style("height", window.innerHeight + "px");
 
   var chartMargin = 32;
   var textWidth = text.node().offsetWidth;
   var chartWidth = graphic.node().offsetWidth - textWidth - chartMargin;
 
-  chart.style("width", chartWidth + "px").style("height", Math.floor(window.innerHeight / 2) + "px");
+  chart
+    .style("width", chartWidth + "px")
+    .style("height", Math.floor(window.innerHeight / 2) + "px");
 
   var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  /*console.log("1 " + document.documentElement.clientWidth);
+  console.log("2 " + window.innerWidth);
+  console.log(w);*/
+  
   if(w <= 750){
-    text.style("left", "33.33%");
+    text.style("left", "17%").style("width", "67%");
     svg.style("left", "25%");
     step.style("margin-bottom", "175%");
-    //cluster.size([360, 500]);
   }
   else{
-    text.style("left", "0%");
+    text.style("left", "0%").style("width", "33%");
     svg.style("left", "50%");
     step.style("margin-bottom", "10%");
-    //cluster.size([360, 276]);
   }
   // 3. tell scrollama to update new element dimensions
   scroller.resize();
@@ -638,7 +651,7 @@ function handleStepEnter(response) {
   // response = { element, direction, index }
 
   // add color to current step only
-  step.classed("is-active", function (d, i) {
+  step.classed("is-active", function(d, i) {
     return i === response.index;
   });
 
@@ -671,13 +684,17 @@ function init() {
   // 2. setup the scroller passing options
   // this will also initialize trigger observations
   // 3. bind scrollama event handlers (this can be chained like below)
-  scroller.setup({
-    container: "#scroll",
-    graphic: ".scroll__graphic",
-    text: ".scroll__text",
-    step: ".scroll__text .step",
-    debug: false
-  }).onStepEnter(handleStepEnter).onContainerEnter(handleContainerEnter).onContainerExit(handleContainerExit);
+  scroller
+    .setup({
+      container: "#scroll",
+      graphic: ".scroll__graphic",
+      text: ".scroll__text",
+      step: ".scroll__text .step",
+      debug: true
+    })
+    .onStepEnter(handleStepEnter)
+    .onContainerEnter(handleContainerEnter)
+    .onContainerExit(handleContainerExit);
 
   // setup resize event
   window.addEventListener("resize", handleResize);
@@ -686,53 +703,98 @@ function init() {
 // kick things off
 init();
 
-function update(year) {
-  classes = data.filter(function (d, i) {
-    if (year === 2562) {
+function update(year){
+  classes = data.filter(function(d, i){
+    if(year === 2562){
       return d;
     }
-    if (parseInt(d.name.substr(0, d.name.lastIndexOf("."))) === year) {
+    if(parseInt(d.name.substr(0, d.name.lastIndexOf("."))) === year){
       return d;
     }
-    if (d.name.substr(0, d.name.lastIndexOf(".")) === 'x') {
+    if(d.name.substr(0, d.name.lastIndexOf(".")) === 'x'){
       return d;
     }
-    if (d.name.substr(0, d.name.lastIndexOf(".")) === 'y') {
+    if(d.name.substr(0, d.name.lastIndexOf(".")) === 'y'){
       return d;
     }
-    if (d.name.substr(0, d.name.lastIndexOf(".")) === 'z') {
+    if(d.name.substr(0, d.name.lastIndexOf(".")) === 'z'){
       return d;
     }
   });
 
   //console.log(classes[0]);
-  var root = packageHierarchy(classes).sum(function (d) {
-    return d.size;
-  });
+  var root = packageHierarchy(classes)
+    .sum(function(d) { return d.size; });
 
   cluster(root);
-  //console.log(root.leaves()[0].data.key)
+  //console.log(root.leaves()[0].data.imports[0])
   var x = packageImports(root.leaves());
+  var y = root.leaves();
   //console.log(packageImports(root.leaves())[0][0].data.key);
-  
- var arr = [], arr2 = [];
+  var arr = [], arr2 = [];
   for(var i = 0; i < x.length; i++){
     arr.push(x[i][0].data.key);
     arr2.push(x[i][x[i].length - 1].data.key);
   }
-
+  
+  var arr3 = [], arr4 = [];
+  for(var i = 0; i < y.length; i++){
+    arr3.push(y[i].data.key);
+    arr4.push(y[i].data.imports[0]);
+  }
+  //console.log(arr3);
+  
   link.style("stroke-opacity", 0.4);
-
-  link.filter(function (d) {
-    if (arr.includes(d[0].data.key) & arr2.includes(d[d.length - 1].data.key)) {
+  
+  //node = node.data(y);
+  
+  /*node = node.filter(function(d){
+    //console.log(d.data.key);
+    
+    if(arr3.includes(d.data.key)){
+      //console.log("yeah" + d.data.key);
+      return d;
+    }
+  });*/
+  /*node.each(function(d){
+    consolelog(d.source + " " + d.target);
+  })*/
+  
+  link.filter(function(d){
+    if(arr.includes(d[0].data.key) & arr2.includes(d[d.length - 1].data.key)){
       //console.log(d[0].data.key);
       //return d;
-    } else {
+    }
+    else{
       return d;
     }
     //console.log(d[d.length - 1].data.key);
-  }).style("stroke-opacity", 0);
+  })
+    .style("stroke-opacity", 0);
+  
+  
+  /*link = link.data(packageImports(root.leaves()), function(d) { return d[0].data.key + d[d.length - 1].data.key; });
+  link.enter()
+      .append("path")
+    .merge(link)
+      .each(function(d) { d.source = d[0], d.target = d[d.length - 1]; })
+      .attr("class", "link")
+      .attr("d", line);
+  link.exit().remove();*/
 
+  /*node = node.data(root.leaves(), function(d) { return d.data.key; });
+  node.enter()
+      .append("text")
+    .merge(node)
+      .attr("class", "node")
+      .attr("dy", "0.31em")
+      .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
+      .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+      .text(function(d) { return d.data.key; })
+      .on("mouseover", mouseovered)
+      .on("mouseout", mouseouted);
+  node.exit().remove();*/
+}
 }
 //# sourceURL=pen.js
 </body></html>
