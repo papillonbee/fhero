@@ -307,7 +307,7 @@ setInterval("showDate()", 1000);
 </section>
 <section id="scroll">
   <div class="scroll__graphic">
-    <div id="container" class="chart"></div>
+	  <div id="container" class="chart"><svg></svg></div>
   </div>
   <div class="scroll__text">
     <div class='step' data-step='1'>
@@ -453,7 +453,7 @@ var line = d3.radialLine().curve(d3.curveBundle.beta(0.85)).radius(function (d) 
 });
 
 var svg = d3.select("div#container")
-  .append("svg")
+  .select("svg")
   .attr("preserveAspectRatio", "xMinYMin meet")
   .attr("viewBox", "-576 -576 1152 1152");
 
@@ -735,5 +735,4 @@ function update(year) {
 
 }
 //# sourceURL=pen.js
-<div class="tooltip"></div>
 </body></html>
