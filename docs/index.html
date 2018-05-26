@@ -441,7 +441,8 @@ var step = text.selectAll(".step");
 
 var div = d3.select("body").append("div").attr("class", "tooltip").style("opacity", 0);
 
-var diameter = 1152;
+function draw() {
+	var diameter = 1152;
     radius = diameter / 2,
     innerRadius = radius - 300;
 var cluster = d3.cluster().size([360, innerRadius]);
@@ -521,6 +522,7 @@ d3.json("https://gist.githubusercontent.com/papillonbee/1ef1c7b696112ea1d08bb32d
     return d.data.key;
   }).on("mouseover", mouseovered).on("mouseout", mouseouted);
 });
+}
 
 function mouseovered(d) {
   node.each(function (n) {
@@ -644,6 +646,11 @@ function handleStepEnter(response) {
 
   // update graphic based on step
   //chart.select("p").text(response.index + 1);
+  var i = 0;
+  if(response.index === 0 && i === 0) {
+	  i++;
+	  draw();
+  }
   update(response.index + 2545);
   //console.log(response.index + 2545);
 }
@@ -676,8 +683,7 @@ function init() {
     graphic: ".scroll__graphic",
     text: ".scroll__text",
     step: ".scroll__text .step",
-    debug: false,
-    offset: 1
+    debug: false
   }).onStepEnter(handleStepEnter).onContainerEnter(handleContainerEnter).onContainerExit(handleContainerExit);
 
   // setup resize event
