@@ -618,13 +618,15 @@ function handleResize() {
 
   var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
   if(w <= 750){
-    text.style("left", "33.33%");
+    //text.style("left", "33.33%");
+    text.style("left", "0%").style("width", "100%");
     svg.style("left", "25%");
     step.style("margin-bottom", "175%");
     //cluster.size([360, 500]);
   }
   else{
-    text.style("left", "0%");
+    //text.style("left", "0%");
+    text.style("left", "0%").style("width", "33.33%");
     svg.style("left", "50%");
     step.style("margin-bottom", "10%");
     //cluster.size([360, 276]);
