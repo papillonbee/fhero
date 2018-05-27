@@ -132,7 +132,7 @@ a:hover {
 .scroll__text {
   position: relative;
   padding: 0 1rem;
-  /*max-width: 30rem;*/
+  max-width: 30rem;
   width: 33.33%;
   margin-top: 50%;
 }
@@ -617,7 +617,7 @@ function handleResize() {
   chart.style("width", chartWidth + "px").style("height", Math.floor(window.innerHeight / 2) + "px");
 
   var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-  if(w <= 100000){
+  if(w <= 750){
     //text.style("left", "33.33%");
     text.style("left", "0%").style("width", "100%");
     svg.style("left", "25%");
