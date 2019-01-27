@@ -429,7 +429,10 @@ setInterval("showDate()", 1000);
 <iframe src="https://www.youtube.com/embed/j_q20y6a4Ng" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="video"></iframe>
  </div>
     <div class='step' data-step='18'>
-      <p>FROM YEAR 2545 TO YEAR 2561</p>
+      <p>YEAR 2562</p>
+    </div>
+    <div class='step' data-step='19'>
+      <p>FROM YEAR 2545 TO YEAR 2562</p>
     </div>
   </div>
 </section>
@@ -469,7 +472,7 @@ var link = svg.append("g").selectAll(".link"),
     node = svg.append("g").selectAll(".node");
 
 var data;
-d3.json("https://gist.githubusercontent.com/papillonbee/1ef1c7b696112ea1d08bb32de9a6a2c7/raw/8eae850e1d859d5d625124634c3692781780d95d/Book2.json", function (error, classes) {
+d3.json("https://gist.githubusercontent.com/papillonbee/1ef1c7b696112ea1d08bb32de9a6a2c7/raw/a8e2716dde8100ceade147a7d8d61d445f1fb33c/Book2.json", function (error, classes) {
   if (error) throw error;
 
   /*classes = classes.filter(function(d, i){
@@ -696,7 +699,7 @@ init();
 
 function update(year) {
   classes = data.filter(function (d, i) {
-    if (year === 2562) {
+    if (year === 2563) {
       return d;
     }
     if (parseInt(d.name.substr(0, d.name.lastIndexOf("."))) === year) {
